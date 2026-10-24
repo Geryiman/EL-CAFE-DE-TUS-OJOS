@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-[#f5f2ee] text-neutral-900 antialiased transition-colors duration-200;
+    background-image:
+      radial-gradient(60rem 40rem at 10% -10%, rgba(191, 138, 87, 0.28), transparent 60%),
+      radial-gradient(50rem 40rem at 100% 0%, rgba(118, 69, 41, 0.18), transparent 55%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  .dark body {
+    @apply bg-[#121112] text-neutral-100;
+    background-image:
+      radial-gradient(60rem 40rem at 10% -10%, rgba(176, 114, 61, 0.22), transparent 60%),
+      radial-gradient(50rem 40rem at 100% 0%, rgba(79, 48, 33, 0.45), transparent 55%);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply rounded-2xl border border-white/60 bg-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl;
+  }
+  .dark .glass {
+    @apply border-white/10 bg-white/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.35)];
+  }
+  .glass-strong {
+    @apply rounded-2xl border border-white/70 bg-white/80 shadow-[0_20px_60px_rgba(0,0,0,0.18)] backdrop-blur-2xl;
+  }
+  .dark .glass-strong {
+    @apply border-white/10 bg-neutral-900/80 shadow-[0_20px_60px_rgba(0,0,0,0.6)];
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-coffee-700 text-white shadow-md shadow-coffee-900/20 hover:bg-coffee-600;
+  }
+  .btn-ghost {
+    @apply btn border border-black/10 bg-white/50 text-neutral-800 hover:bg-white/80;
+  }
+  .dark .btn-ghost {
+    @apply border-white/10 bg-white/5 text-neutral-100 hover:bg-white/10;
+  }
+  .input {
+    @apply w-full rounded-xl border border-black/10 bg-white/70 px-3.5 py-2.5 text-sm outline-none transition focus:border-coffee-500 focus:ring-2 focus:ring-coffee-400/30;
+  }
+  .dark .input {
+    @apply border-white/10 bg-white/5 text-neutral-100 placeholder:text-neutral-500;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Scrollbars discretas estilo macOS */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 100, 80, 0.4) transparent;
+}

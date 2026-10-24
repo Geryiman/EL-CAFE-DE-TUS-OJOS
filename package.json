@@ -1,0 +1,16 @@
+{
+  "name": "el-cafe-de-tus-ojos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Menú digital, panel admin demo y despacho por WhatsApp - El Café de Tus Ojos",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "build": "npm install --prefix client --include=dev && npm run build --prefix client && npm install --prefix server",
+    "start": "node server/index.js",
+    "dev:server": "node --watch server/index.js",
+    "dev:client": "npm run dev --prefix client"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
