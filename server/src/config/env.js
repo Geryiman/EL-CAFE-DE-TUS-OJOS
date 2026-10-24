@@ -19,24 +19,25 @@ function loadEnvFile(filePath) {
 loadEnvFile(path.join(__dirname, '../../../.env'));
 loadEnvFile(path.join(__dirname, '../../.env'));
 
+const isVercel = Boolean(process.env.VERCEL);
+const defaultDbPath = isVercel
+  ? path.join('/tmp', 'db.json')
+  : path.join(__dirname, '../../data/db.json');
+
 const env = {
   PORT: process.env.PORT || 3000,
   NODE_ENV: process.env.NODE_ENV || 'development',
-  JWT_SECRET: process.env.JWT_SECRET || '',
+  JWT_SECRET: process.env.JWT_SECRET || 'Cualquierclaveesbuena',
   ADMIN_USER: process.env.ADMIN_USER || 'admin',
-  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || '',
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'german',
   DEMO_MODE: (process.env.DEMO_MODE || 'true').toLowerCase() === 'true',
   BUSINESS_NAME: process.env.BUSINESS_NAME || 'El Café de Tus Ojos',
-  BUSINESS_WHATSAPP_PHONE: process.env.BUSINESS_WHATSAPP_PHONE || '5212221234567',
-  BUSINESS_CLABE: process.env.BUSINESS_CLABE || '012345678901234567',
-  BUSINESS_BANK: process.env.BUSINESS_BANK || 'BBVA México',
-  DB_PATH: process.env.DB_PATH || path.join(__dirname, '../../data/db.json'),
+  BUSINESS_WHATSAPP_PHONE: process.env.BUSINESS_WHATSAPP_PHONE || '2382528801',
+  BUSINESS_CLABE: process.env.BUSINESS_CLABE || '722969020208857289',
+  BUSINESS_BANK: process.env.BUSINESS_BANK || 'MErcado Libre',
+  DB_PATH: process.env.DB_PATH || defaultDbPath,
+  RENDER_EXTERNAL_URL: process.env.RENDER_EXTERNAL_URL || process.env.KEEP_ALIVE_URL || '',
+  IS_VERCEL: isVercel,
 };
-
-if (!env.JWT_SECRET || !env.ADMIN_PASSWORD) {
-  console.warn(
-    '[env] Falta JWT_SECRET o ADMIN_PASSWORD. Copia .env.example a .env y define ambos valores.'
-  );
-}
 
 module.exports = env;
